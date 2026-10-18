@@ -1,0 +1,52 @@
+{
+  "name": "axiom-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Write the math. Watch the physics. Catch the bug.",
+  "author": "Priya Kumari <priya06.18kumari@gmail.com>",
+  "contributors": [
+    "Priya Kumari <priya06.18kumari@gmail.com>",
+    "Anurag Tiwari <anurag18.05tiwari@gmail.com>"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.102.0",
+    "@react-three/fiber": "^8.17.10",
+    "katex": "^0.16.11",
+    "lenis": "^1.1.18",
+    "lucide-react": "^0.468.0",
+    "mathjs": "^12.4.1",
+    "matter-js": "^0.19.0",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.160.0",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^15.0.0",
+    "@types/katex": "^0.16.7",
+    "@types/matter-js": "^0.19.6",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.160.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.24",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5",
+    "vitest": "^1.5.0"
+  }
+}
