@@ -1,0 +1,83 @@
+{
+  "problem_metadata": {
+    "title": "Block on a rough incline",
+    "domain": "incline",
+    "theme_color": "#1A55F0",
+    "dimensional_check_passed": true,
+    "notes": "A block of mass m is placed on an incline with angle θ and kinetic friction coefficient μ."
+  },
+  "symbols": [
+    { "name": "m", "label": "mass", "dim": "M", "unit": "kg", "value": 5, "min": 0.5, "max": 50, "step": 0.5 },
+    { "name": "g", "label": "gravity", "dim": "L T^-2", "unit": "m/s²", "value": 9.81, "min": 1, "max": 25, "step": 0.01 },
+    { "name": "theta", "label": "incline angle", "dim": "1", "unit": "°", "value": 30, "min": 5, "max": 75, "step": 0.5 },
+    { "name": "mu", "label": "kinetic friction", "dim": "1", "unit": "", "value": 0.25, "min": 0, "max": 1, "step": 0.01 }
+  ],
+  "derivation_steps": [
+    {
+      "step_number": 1,
+      "latex": "F_{net} = mg\\sin\\theta - f_k",
+      "lhs": "F_net",
+      "expr": "m*g*sin(theta) - f_k",
+      "reference_expr": "m*g*sin(theta) - f_k",
+      "status": "VALID",
+      "explanation": "Correct force balance along the incline.",
+      "bbox": { "x": 40, "y": 30, "width": 320, "height": 40 }
+    },
+    {
+      "step_number": 2,
+      "latex": "f_k = \\mu_k\\, mg\\sin\\theta",
+      "lhs": "f_k",
+      "expr": "mu*m*g*sin(theta)",
+      "reference_expr": "mu*m*g*cos(theta)",
+      "status": "ERROR_TRIG",
+      "error_type": "NORMAL_FORCE_MISCALCULATION",
+      "explanation": "The normal force is mg cosθ, not mg sinθ. You used sin(θ) where cos(θ) belongs.",
+      "socratic_hint": "Look perpendicular to the incline. Is the normal force mg·sinθ or mg·cosθ?",
+      "socratic_hint_hinglish": "Incline ke perpendicular direction dekho. Normal force mg·sinθ hai ya mg·cosθ?",
+      "corrected_step_latex": "f_k = \\mu_k\\, mg\\cos\\theta",
+      "bbox": { "x": 40, "y": 90, "width": 320, "height": 40 }
+    },
+    {
+      "step_number": 3,
+      "latex": "a = \\frac{mg\\sin\\theta - \\mu mg\\sin\\theta}{m}",
+      "lhs": "a",
+      "expr": "(m*g*sin(theta) - mu*m*g*sin(theta))/m",
+      "reference_expr": "(m*g*sin(theta) - mu*m*g*cos(theta))/m",
+      "status": "PROPAGATED",
+      "error_type": "PROPAGATED_ERROR",
+      "explanation": "Algebraically consistent with step 2, but inherits the mistake from step 2. Fix step 2 first.",
+      "socratic_hint": "This step would be right if step 2 were right. Go back and check step 2.",
+      "socratic_hint_hinglish": "Yeh step step 2 par depend karta hai. Pehle step 2 theek karo.",
+      "corrected_step_latex": "a = \\frac{mg\\sin\\theta - \\mu_k mg\\cos\\theta}{m}",
+      "bbox": { "x": 40, "y": 150, "width": 380, "height": 50 }
+    },
+    {
+      "step_number": 4,
+      "latex": "a = g\\sin\\theta(1 - \\mu)",
+      "lhs": "a",
+      "expr": "g*sin(theta)*(1 - mu)",
+      "reference_expr": "g*(sin(theta) - mu*cos(theta))",
+      "status": "PROPAGATED",
+      "error_type": "PROPAGATED_ERROR",
+      "explanation": "Factorization of the erroneous step 3 expression.",
+      "socratic_hint": "Check step 2 first to resolve the normal force component.",
+      "socratic_hint_hinglish": "Pehle step 2 theek karo normal force ke component ke liye.",
+      "corrected_step_latex": "a = g(\\sin\\theta - \\mu_k\\cos\\theta)",
+      "bbox": { "x": 40, "y": 220, "width": 320, "height": 45 }
+    }
+  ],
+  "simulation_scene": {
+    "gravity": 9.81,
+    "incline_angle_deg": 30,
+    "friction_coeff": 0.25,
+    "bodies": [
+      {
+        "id": "block_1",
+        "type": "rigid_box",
+        "mass_kg": 5.0,
+        "initial_velocity": 0,
+        "vectors_to_render": ["weight_mg", "normal_N", "friction_f", "net_acceleration"]
+      }
+    ]
+  }
+}

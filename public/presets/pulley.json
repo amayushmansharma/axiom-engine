@@ -1,0 +1,87 @@
+{
+  "problem_metadata": {
+    "title": "Pulley-block system with table friction",
+    "domain": "atwood",
+    "theme_color": "#5B8CC9",
+    "dimensional_check_passed": true,
+    "notes": "Block m1 sits on a rough table with coefficient μ; block m2 hangs vertically."
+  },
+  "symbols": [
+    { "name": "m1", "label": "table mass", "dim": "M", "unit": "kg", "value": 5, "min": 0.5, "max": 20, "step": 0.5 },
+    { "name": "m2", "label": "hanging mass", "dim": "M", "unit": "kg", "value": 3, "min": 0.5, "max": 20, "step": 0.5 },
+    { "name": "mu", "label": "friction coeff", "dim": "1", "unit": "", "value": 0.2, "min": 0, "max": 1, "step": 0.01 },
+    { "name": "g", "label": "gravity", "dim": "L T^-2", "unit": "m/s²", "value": 9.81, "min": 1, "max": 25, "step": 0.01 }
+  ],
+  "derivation_steps": [
+    {
+      "step_number": 1,
+      "latex": "T = m_1 a + \\mu m_1 g",
+      "lhs": "T",
+      "expr": "m1*a + mu*m1*g",
+      "reference_expr": "m1*a + mu*m1*g",
+      "status": "VALID",
+      "explanation": "Correct equation of motion for horizontal block m1.",
+      "bbox": { "x": 40, "y": 30, "width": 320, "height": 40 }
+    },
+    {
+      "step_number": 2,
+      "latex": "T = m_2 g - m_2 a",
+      "lhs": "T",
+      "expr": "m2*g - m2*a",
+      "reference_expr": "m2*g - m2*a",
+      "status": "VALID",
+      "explanation": "Correct equation of motion for vertical hanging block m2.",
+      "bbox": { "x": 40, "y": 90, "width": 320, "height": 40 }
+    },
+    {
+      "step_number": 3,
+      "latex": "a = \\frac{(m_2 - \\mu m_1)g}{m_1 - m_2}",
+      "lhs": "a",
+      "expr": "(m2 - mu*m1)*g / (m1 - m2)",
+      "reference_expr": "(m2 - mu*m1)*g / (m1 + m2)",
+      "status": "ERROR_SIGN",
+      "error_type": "SIGN_FLIP",
+      "explanation": "Sign error: a + became a − in the denominator.",
+      "socratic_hint": "When adding the two force equations (T cancels), how do m1·a and m2·a combine on the RHS?",
+      "socratic_hint_hinglish": "Dono equations ko add karne par T cancel hota hai, toh m1·a aur m2·a add hote hain ya subtract?",
+      "corrected_step_latex": "a = \\frac{(m_2 - \\mu m_1)g}{m_1 + m_2}",
+      "bbox": { "x": 40, "y": 150, "width": 350, "height": 50 }
+    },
+    {
+      "step_number": 4,
+      "latex": "T = m_1 a + \\mu m_1 g",
+      "lhs": "T",
+      "expr": "m1*((m2 - mu*m1)*g / (m1 - m2)) + mu*m1*g",
+      "reference_expr": "m1*((m2 - mu*m1)*g / (m1 + m2)) + mu*m1*g",
+      "status": "PROPAGATED",
+      "error_type": "PROPAGATED_ERROR",
+      "explanation": "Tension evaluated with the wrong acceleration from step 3.",
+      "socratic_hint": "Fix the acceleration in step 3 first.",
+      "socratic_hint_hinglish": "Pehle step 3 ka acceleration theek karo.",
+      "corrected_step_latex": "T = m_1\\left(\\frac{(m_2 - \\mu m_1)g}{m_1 + m_2}\\right) + \\mu m_1 g",
+      "bbox": { "x": 40, "y": 220, "width": 320, "height": 45 }
+    }
+  ],
+  "simulation_scene": {
+    "gravity": 9.81,
+    "friction_coeff": 0.2,
+    "m1": 5,
+    "m2": 3,
+    "bodies": [
+      {
+        "id": "table_block",
+        "type": "rigid_box",
+        "mass_kg": 5.0,
+        "initial_velocity": 0,
+        "vectors_to_render": ["tension_T", "friction_f", "normal_N", "weight_mg"]
+      },
+      {
+        "id": "hanging_block",
+        "type": "rigid_box",
+        "mass_kg": 3.0,
+        "initial_velocity": 0,
+        "vectors_to_render": ["weight_mg", "tension_T"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "problem_metadata": {
+    "title": "Target interception & inelastic collision",
+    "domain": "projectile_collision",
+    "theme_color": "#18B26B",
+    "dimensional_check_passed": true,
+    "notes": "A projectile is launched towards a falling target, meeting at t = 2.0 s."
+  },
+  "symbols": [
+    { "name": "m", "label": "proj mass", "dim": "M", "unit": "kg", "value": 1, "min": 0.1, "max": 10, "step": 0.1 },
+    { "name": "v0", "label": "launch speed", "dim": "L T^-1", "unit": "m/s", "value": 20, "min": 5, "max": 50, "step": 0.5 },
+    { "name": "theta", "label": "launch angle", "dim": "1", "unit": "°", "value": 53.13, "min": 10, "max": 80, "step": 0.01 },
+    { "name": "x0", "label": "target x", "dim": "L", "unit": "m", "value": 24, "min": 5, "max": 100, "step": 1 },
+    { "name": "y0", "label": "target y", "dim": "L", "unit": "m", "value": 32, "min": 5, "max": 100, "step": 1 },
+    { "name": "targetMass", "label": "target mass", "dim": "M", "unit": "kg", "value": 2, "min": 0.5, "max": 20, "step": 0.5 },
+    { "name": "g", "label": "gravity", "dim": "L T^-2", "unit": "m/s²", "value": 9.81, "min": 1, "max": 25, "step": 0.01 },
+    { "name": "restitution", "label": "restitution", "dim": "1", "unit": "", "value": 0.5, "min": 0, "max": 1, "step": 0.05 }
+  ],
+  "derivation_steps": [
+    {
+      "step_number": 1,
+      "latex": "v_{y0} = v_0\\sin\\theta",
+      "lhs": "v_y0",
+      "expr": "v0*sin(theta)",
+      "reference_expr": "v0*sin(theta)",
+      "status": "VALID",
+      "explanation": "Correct initial vertical velocity component.",
+      "bbox": { "x": 40, "y": 30, "width": 280, "height": 40 }
+    },
+    {
+      "step_number": 2,
+      "latex": "t_c = \\frac{x_0}{v_0\\sin\\theta}",
+      "lhs": "t_c",
+      "expr": "x0 / (v0*sin(theta))",
+      "reference_expr": "x0 / (v0*cos(theta))",
+      "status": "ERROR_TRIG",
+      "error_type": "TRIG_COMPONENT_SWAP",
+      "explanation": "Horizontal travel distance x0 is governed by horizontal velocity v0 cosθ, not vertical v0 sinθ.",
+      "socratic_hint": "Which velocity component governs horizontal motion along the x-axis: v0·cosθ or v0·sinθ?",
+      "socratic_hint_hinglish": "X-axis ke along horizontal distance ke liye konsa component hoga: v0·cosθ ya v0·sinθ?",
+      "corrected_step_latex": "t_c = \\frac{x_0}{v_0\\cos\\theta}",
+      "bbox": { "x": 40, "y": 90, "width": 300, "height": 45 }
+    },
+    {
+      "step_number": 3,
+      "latex": "y_c = v_0\\sin\\theta\\, t_c - \\frac{1}{2}gt_c^2",
+      "lhs": "y_c",
+      "expr": "v0*sin(theta)*t_c - 0.5*g*t_c^2",
+      "reference_expr": "v0*sin(theta)*t_c - 0.5*g*t_c^2",
+      "status": "VALID",
+      "explanation": "Correct kinematic position formula in vertical dimension.",
+      "bbox": { "x": 40, "y": 160, "width": 350, "height": 45 }
+    }
+  ],
+  "simulation_scene": {
+    "gravity": 9.81,
+    "projectile_v0": 20,
+    "projectile_angle_deg": 53.13,
+    "target_x0": 24,
+    "target_y0": 32,
+    "projectile_mass": 1,
+    "target_mass": 2,
+    "restitution": 0.5,
+    "bodies": [
+      {
+        "id": "projectile_a",
+        "type": "sphere",
+        "mass_kg": 1.0,
+        "vectors_to_render": ["velocity_v", "weight_mg", "momentum_p"]
+      },
+      {
+        "id": "target_b",
+        "type": "sphere",
+        "mass_kg": 2.0,
+        "vectors_to_render": ["weight_mg"]
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&amp;display=swap');
+      .handwriting {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 26px;
+        fill: #111a36;
+      }
+      .math-script {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        fill: #1a2b5c;
+      }
+      .faint-ruled {
+        stroke: #c8d8e8;
+        stroke-width: 1;
+      }
+      .margin-line {
+        stroke: #fca5a5;
+        stroke-width: 1.5;
+      }
+    </style>
+  </defs>
+
+  <rect width="600" height="400" fill="#fcfbf7" rx="8"/>
+  <line x1="0" y1="50" x2="600" y2="50" class="faint-ruled" />
+  <line x1="0" y1="90" x2="600" y2="90" class="faint-ruled" />
+  <line x1="0" y1="130" x2="600" y2="130" class="faint-ruled" />
+  <line x1="0" y1="170" x2="600" y2="170" class="faint-ruled" />
+  <line x1="0" y1="210" x2="600" y2="210" class="faint-ruled" />
+  <line x1="0" y1="250" x2="600" y2="250" class="faint-ruled" />
+  <line x1="0" y1="290" x2="600" y2="290" class="faint-ruled" />
+  <line x1="0" y1="330" x2="600" y2="330" class="faint-ruled" />
+  <line x1="0" y1="370" x2="600" y2="370" class="faint-ruled" />
+  <line x1="75" y1="0" x2="75" y2="400" class="margin-line" />
+
+  <text x="90" y="44" class="handwriting" fill="#0b0b0b" transform="rotate(-0.3 90 44)">Damped Harmonic Oscillator (m=2kg, k=50N/m, c=1.5kg/s):</text>
+
+  <g transform="rotate(0.3 90 85)">
+    <text x="90" y="85" class="math-script">(1) F = -k·x - c·v</text>
+  </g>
+  <g transform="rotate(-0.5 90 145)">
+    <text x="90" y="145" class="math-script" fill="#b91c1c">(2) ω0 = √(m / k)</text>
+    <path d="M 180 152 Q 220 154 260 151" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+  <g transform="rotate(0.4 90 205)">
+    <text x="90" y="205" class="math-script">(3) E(t) = 1/2 k x0² · exp(-c·t / m)</text>
+  </g>
+  <text x="15" y="200" class="handwriting" fill="#9ca3af" font-size="18" transform="rotate(-90 15 200)">Rough Work</text>
+</svg>

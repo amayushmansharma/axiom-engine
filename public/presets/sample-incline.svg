@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&amp;display=swap');
+      .handwriting {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 26px;
+        fill: #111a36;
+      }
+      .math-script {
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        fill: #1a2b5c;
+      }
+      .faint-ruled {
+        stroke: #c8d8e8;
+        stroke-width: 1;
+      }
+      .margin-line {
+        stroke: #fca5a5;
+        stroke-width: 1.5;
+      }
+    </style>
+  </defs>
+
+  <!-- Paper Background -->
+  <rect width="600" height="400" fill="#fcfbf7" rx="8"/>
+
+  <!-- Ruled Notebook Lines -->
+  <line x1="0" y1="50" x2="600" y2="50" class="faint-ruled" />
+  <line x1="0" y1="90" x2="600" y2="90" class="faint-ruled" />
+  <line x1="0" y1="130" x2="600" y2="130" class="faint-ruled" />
+  <line x1="0" y1="170" x2="600" y2="170" class="faint-ruled" />
+  <line x1="0" y1="210" x2="600" y2="210" class="faint-ruled" />
+  <line x1="0" y1="250" x2="600" y2="250" class="faint-ruled" />
+  <line x1="0" y1="290" x2="600" y2="290" class="faint-ruled" />
+  <line x1="0" y1="330" x2="600" y2="330" class="faint-ruled" />
+  <line x1="0" y1="370" x2="600" y2="370" class="faint-ruled" />
+
+  <!-- Left Margin Line -->
+  <line x1="75" y1="0" x2="75" y2="400" class="margin-line" />
+
+  <!-- Title / Problem Header -->
+  <text x="90" y="44" class="handwriting" fill="#0b0b0b" transform="rotate(-0.5 90 44)">Incline plane with friction (m = 5kg, θ = 30°):</text>
+
+  <!-- Step 1 -->
+  <g transform="rotate(0.4 90 85)">
+    <text x="90" y="85" class="math-script">(1) F_net = mg sin(θ) - f_k</text>
+  </g>
+
+  <!-- Step 2 (Planted Bug: sin instead of cos) -->
+  <g transform="rotate(-0.6 90 145)">
+    <text x="90" y="145" class="math-script" fill="#b91c1c">(2) f_k = μ_k · mg sin(θ)</text>
+    <!-- slight underline scribble -->
+    <path d="M 190 152 Q 240 154 290 151" stroke="#ef4444" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Step 3 (Propagated) -->
+  <g transform="rotate(0.3 90 205)">
+    <text x="90" y="205" class="math-script">(3) a = (mg sin(θ) - μ mg sin(θ)) / m</text>
+  </g>
+
+  <!-- Step 4 (Propagated) -->
+  <g transform="rotate(-0.2 90 265)">
+    <text x="90" y="265" class="math-script">(4) a = g sin(θ) (1 - μ)</text>
+  </g>
+
+  <!-- Handwritten Margin Annotations -->
+  <text x="95" y="325" class="handwriting" fill="#4b5563" transform="rotate(0.5 95 325)">→ a = 9.81 · 0.5 · 0.75 ≈ 3.68 m/s² ?</text>
+  <text x="15" y="200" class="handwriting" fill="#9ca3af" font-size="18" transform="rotate(-90 15 200)">Rough Work</text>
+</svg>

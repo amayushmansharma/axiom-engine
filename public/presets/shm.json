@@ -1,0 +1,65 @@
+{
+  "problem_metadata": {
+    "title": "Damped harmonic oscillator & energy dissipation",
+    "domain": "shm",
+    "theme_color": "#FF3D8B",
+    "dimensional_check_passed": false,
+    "notes": "A mass-spring system subject to linear viscous damping."
+  },
+  "symbols": [
+    { "name": "m", "label": "mass", "dim": "M", "unit": "kg", "value": 2, "min": 0.2, "max": 20, "step": 0.1 },
+    { "name": "k", "label": "spring constant", "dim": "M T^-2", "unit": "N/m", "value": 50, "min": 5, "max": 200, "step": 1 },
+    { "name": "c", "label": "damping coeff", "dim": "M T^-1", "unit": "kg/s", "value": 1.5, "min": 0, "max": 10, "step": 0.1 },
+    { "name": "x0", "label": "init displacement", "dim": "L", "unit": "m", "value": 0.5, "min": 0.05, "max": 2, "step": 0.05 }
+  ],
+  "derivation_steps": [
+    {
+      "step_number": 1,
+      "latex": "F = -kx - cv",
+      "lhs": "F",
+      "expr": "-k*x - c*v",
+      "reference_expr": "-k*x - c*v",
+      "status": "VALID",
+      "explanation": "Correct equation for linear restoring and viscous drag forces.",
+      "bbox": { "x": 40, "y": 30, "width": 280, "height": 40 }
+    },
+    {
+      "step_number": 2,
+      "latex": "\\omega_0 = \\sqrt{\\frac{m}{k}}",
+      "lhs": "omega0",
+      "expr": "sqrt(m/k)",
+      "reference_expr": "sqrt(k/m)",
+      "status": "ERROR_DIMENSION",
+      "error_type": "INVERTED_RATIO",
+      "explanation": "You inverted a ratio (k/m became m/k). [M/(M T^-2)]^1/2 has units of time (s), but angular frequency must be 1/time (rad/s).",
+      "socratic_hint": "Check units: √(m/k) gives seconds. Shouldn't angular frequency be in rad/s (1/s)?",
+      "socratic_hint_hinglish": "Units check karo: √(m/k) time (seconds) deta hai, jabki frequency rad/s (1/s) honi chahiye.",
+      "corrected_step_latex": "\\omega_0 = \\sqrt{\\frac{k}{m}}",
+      "bbox": { "x": 40, "y": 90, "width": 280, "height": 45 }
+    },
+    {
+      "step_number": 3,
+      "latex": "E(t) = \\frac{1}{2}k x_0^2 e^{-\\frac{c}{m}t}",
+      "lhs": "E",
+      "expr": "0.5*k*x0^2 * exp(-c*t/m)",
+      "reference_expr": "0.5*k*x0^2 * exp(-c*t/m)",
+      "status": "VALID",
+      "explanation": "Correct exponential decay envelope for total mechanical energy.",
+      "bbox": { "x": 40, "y": 160, "width": 340, "height": 45 }
+    }
+  ],
+  "simulation_scene": {
+    "gravity": 9.81,
+    "spring_constant": 50,
+    "damping_coeff": 1.5,
+    "bodies": [
+      {
+        "id": "shm_block",
+        "type": "spring_mass",
+        "mass_kg": 2.0,
+        "initial_position": 0.5,
+        "vectors_to_render": ["spring_F", "damping_f", "velocity_v"]
+      }
+    ]
+  }
+}
