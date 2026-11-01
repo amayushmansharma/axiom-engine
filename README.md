@@ -187,3 +187,9 @@ Every single check passes with 0 errors:
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Requirements
+
+- Node.js `>=20`
+- npm (lockfile: package-lock.json)
+- A local `.env` created from `.env.example`
